@@ -31,11 +31,11 @@
 
 ## Purpose
 
-The puspose of this document is to represent the Office Manager Web Application. This document explains the system's software requirements of the project. The purpose of the application is to simplify the process of managing departments and employees.
+The puspose of this document is to present the Office Manager Web Application. The application is designed to simplify the process of managing departments and employees.
 
 ## Product Scope
 
-This application will use a database of a company which includes tables of departments and employees of these. The application will allow to perform basic operation for management the employees.
+This application will work with a company database constisting of two tables: departments and employees. The application will allow to perform basic operations with abovementioned the database.
 
 # Overall Description 
 
@@ -46,19 +46,25 @@ No perspective =)
 # Product Functions
 
 Office Manager will provide the following functions:
-* display list of departments
-* display list of employees
-* add/edit/delete department/employe information
+* displaying list of departments
+* displaying list of employees
+* adding/editing/deleting department/employee information
 
-# User Classes and Characteristics
+## User Classes and Characteristics
+
+This project is intended for use by managers and HR specialists.
 
 ## Operating Environment
 
-The application can be run on any internet browser.
+When developing this application, the following will be used:
+* Ubuntu 18.04 LTS
+* Python 3.7.3
+* Django 2.2
+* MySQL
 
 ## User Documentation
 
-_List the user documentation components (such as user manuals, on-line help, and tutorials) that will be delivered along with the software. Identify any known user documentation delivery formats or standards._
+TODO.
 
 # External Interface Requirements 
 
@@ -82,86 +88,200 @@ There are no external communication interface requirements.
 
 ### Department area
 
-1 Display list of departments
-* User click the tab "Department"
-* Application display list of existing departments
+1 Displaying list of departments
+Main scenario
+* User clicks the "Department" tab
+* Application displays list of existing departments
 
 ![Department](department.png)
-Pic.1.1
+Fig.1.1
 
-The list displays the following columns:
-* Department name - unique department name
-* Average salary - automatically calculated
-* Count of employees - total number of department employees
-Aggregate function: Average salary = total salary of all employees for three months / count of employees
+There are following columns:
+* Department name - unique department name;
+* Average salary - automatically calculated;
+* Number of employees - total of department employees.
 
-2 Add department
+Aggregate function: Average salary = total salary of employees / number of employees
+
+2 Adding department
 
 2.1 Main scenario
-* User cliack "add" button
-* Application displays form to enter name of new department
-* User enter department name and press "Save" button
-* If name of department is entered incorrectly, message is displayed
-* If name is valid, then record is adding to database
-* If error occurs, then error message is displaying
-* If new department is successfully added, then list of departments with added record is displaying
+* User clicks the "add" button;
+* Application displays form for entering data;
+* User enters the department name and press the "Save" button;
+* If the department name is incorrect, a message will be displayed;
+* If the name is valid, then a record will be added to database;
+* If an error occurs, then an error message will be displayed;
+* If a new department is successfully added, then a list of departments with the added record will be displayed.
 
-2.2 Cancel scenario
-* User cliack "add" button
-* Application displays form to enter name of new department
-* User enter department name and press "Cancel" button
-* New department don't save in database
+2.2 Canceling scenario
+* User clicks the "add" button;
+* Application displays form for entering data;
+* User enters the department name and press the "Cancel" button;
+* A record about the new department will not be stored in database.
+* Application displays a list of departments without the abovementioned record.
 
 ![Add-department](add-department.png)
-Pic.1.2
+Fig.1.2
 
-When adding a department, entered name of new department.
-
-3 Edit department
-
-3.1 Main scenario
-* User click the "Edit" button
-* Application displays form to edit name of department
-* User enter a new name either makes no changes and click "Save" button
-* If name of department is entered incorrectly, message is displayed
-* If name is valid, then edited record is adding to database
-* If error occurs, then error message is displaying
-* If edited record is successfully added, then list of departments with edited record is displaying
-
-3.2 Cancel scenario
-* User click the "Edit" button
-* Application displays form to edit name of department
-* User enter a new name either makes no changes and click "Cancel" button
-* Edited record don't save in database
-
-![Edit-department](edit-department.png)
-Pic.1.3
+Fields required when adding a new department:
+* Department name
 
 Data validation:
-* Name - maximum length of 200 characters
+* Name - maximum length of 200 characters.
 
-4 Removing the department
+3 Editing department record
+
+3.1 Main scenario
+* User clicks the "Edit" button;
+* Application displays form for editing data;
+* User enters a new name either makes no changes and clicks the "Save" button;
+* If the department name is incorrect, a message will be displayed;
+* If the name is valid, then a record will be changed and stored in database;
+* If an error occurs, then an error message will be displayed;
+* If the edited record is successfully added, then a list of departments with changes will be displayed.
+
+3.2 Canceling scenario
+* User clicks the "Edit" button;
+* Application displays form for editing data;
+* User enters a new name either makes no changes and clicks the "Cancel" button;
+* The edited record won't be stored in database.
+* List of departments without changes will be displayed.
+
+![Edit-department](edit-department.png)
+Fig.1.3
+
+4 Deleting department record
 
 4.2 Main scenario
-* User click "Remove" button in the corresponding line
-* Application display a confirmation dialog
-* User click "Confirm"
-* Record is deleted from database
-* If errors occurs, then error message displayed
-* If record successfully deleted, then list of departments without deleted record is displaying
+* User clicks the "Delete" button in the corresponding line;
+* Application displays a popup box;
+* User clicks the "Yes" button;
+* Record will be deleted from database;
+* If an error occurs, then an error message will be displayed;
+* If the record is successfully deleted, then a list of departments with changes will be displayed.
 
-4.3 Cancel scenario
-* User click "Remove" button in the corresponding line
-* Application display a confirmation dialog
-* User click "Cancel"
-* Record didn't delete from database
-* List of departments without changes is displaying
+4.3 Canceling scenario
+* User clicks the "Delete" button in the corresponding line;
+* Application displays a popup box;
+* User clicks the "No" button;
+* Record will not be deleted from database;
+* List of departments without changes will be displayed.
 
 ![Remove-department](remove-department.png)
-Pic.1.4
+Fig.1.4
 
-### Employe area
+### Employee area
+
+1 Displaying list of employees
+Main scenario
+* User clicks the "Employee" tab;
+* Application displays list of all employees.
+
 ![Employe](employe.png)
+
+There are following columns:
+* Department - department of employee;
+* First name - employee's first name;
+* Second salary - employee's second name;
+* Date of birth - employee's date of birth;
+* Salary - employee's salary.
+
+2 Filtering by date of birth
+
+2.1 Main scenario
+* User sets the date value in the "from" and "to" fields and clicks the "Refresh" button;
+* Application displays a list of employees with the date of birth in specified period.
+
+2.2 Only the "from" field
+* User sets the date value in the "from" field and clicks the "Refresh" button;
+* Application displays a list of employees with the date of birth which is greater than the date specified in the "from" field (limits included).
+
+2.3 Only the "to" field
+* User sets the date value in the "to" field and clicks the "Refresh" button;
+* Application displays a list of employees with the date of birth which is smaller than the date specified in the "to" field (limits included).
+
+TODO img
+
+3 Adding employee
+
+3.1 Main scenario
+* User clicks the "add" button;
+* Application displays form for entering data;
+* User enters the employee's name and press the "Save" button;
+* If the entered data are incorrect, a message will be displayed;
+* If the date are valid, then a record will be added to database;
+* If an error occurs, then an error message will be displayed;
+* If a new employee is successfully added, then a list of employees with the added record will be displayed.
+
+3.2 Canceling scenario
+* User clicks the "add" button;
+* Application displays form for entering data;
+* User enters the required data and press the "Cancel" button;
+* A record about the new employee will not be stored in database.
+* Application displays a list of employees without the abovementioned record.
+
+![Add-department](add-department.png)
+Fig.1.2
+
+When adding an employee, the followng fields are available:
+* Department - selected from drop-down list;
+* First name - employee's first name;
+* Second name - employee's second name;
+* Date of birth - employee's date of birth;
+* Salary - employee's salary.
+
+Data validation:
+* First name - maximum length 100 characters;
+* Second name - maximum length 100 characters;
+* Date of birth - in format dd.mm.yyyy;
+* Salary - decimal number with 2 decimal places.
+
+4 Editing employee record
+
+4.1 Main scenario
+* User clicks the "Edit" button;
+* Application displays form for editing data;
+* User enters a new data either makes no changes and clicks the "Save" button;
+* If the data is incorrect, a message will be displayed;
+* If the name is valid, then a record will be changed and stored in database;
+* If an error occurs, then an error message will be displayed;
+* If the edited record is successfully added, then a list of employees with changes will be displayed.
+
+4.2 Canceling scenario
+* User clicks the "Edit" button;
+* Application displays form for editing data;
+* User enters a new data either makes no changes and clicks the "Cancel" button;
+* The edited record won't be stored in database;
+* List of employees without changes will be displayed.
+
+![Edit-department](edit-department.png)
+Fig.1.3
+
+Data validation:
+* TODO
+* TODO
+* TODO
+
+5 Deleting employee record
+
+5.2 Main scenario
+* User clicks the "Delete" button in the corresponding line;
+* Application displays a popup box;
+* User clicks the "Yes" button;
+* Record will be deleted from database;
+* If an error occurs, then an error message will be displayed;
+* If the record is successfully deleted, then a list of employees with changes will be displayed.
+
+5.3 Canceling scenario
+* User clicks the "Delete" button in the corresponding line;
+* Application displays a popup box;
+* User clicks the "No" button;
+* Record will not be deleted from database;
+* List of employees without changes will be displayed.
+
+![Remove-department](remove-department.png)
+Fig.1.4
 
 # Other Non-Functional Requirements 
 ---
