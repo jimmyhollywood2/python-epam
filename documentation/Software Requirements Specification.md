@@ -17,7 +17,7 @@
   * [Communications Interfaces](#communications-interfaces)
 * [System Features](system-features)
   * [Department Area](#department-area)
-  * [Employe Area](#employe-area)
+  * [Employee Area](#employee-area)
 * [Other Non-Functional Requirements](#other-non-functional-requirements)
   * [Performance Requirements](#performance-requirements)
   * [Safety Requirements](#safety-requirements)
