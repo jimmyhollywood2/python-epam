@@ -35,7 +35,7 @@ The puspose of this document is to present the Office Manager Web Application. T
 
 ## Product Scope
 
-This application will work with a company database constisting of two tables: departments and employees. The application will allow to perform basic operations with abovementioned the database.
+This application will work with a company database constisting of two tables: departments and employees. The application will allow to perform basic operations with the abovementioned database.
 
 # Overall Description 
 
@@ -93,7 +93,7 @@ Main scenario
 * User clicks the "Department" tab
 * Application displays list of existing departments
 
-![Department](department.png)
+![department](department.png)
 Fig.1.1
 
 There are following columns:
@@ -101,9 +101,9 @@ There are following columns:
 * Average salary - automatically calculated;
 * Number of employees - total of department employees.
 
-Aggregate function: Average salary = total salary of employees / number of employees
+Aggregate function: Average salary = total salary of employees / total number of employees
 
-2 Adding department
+2 Adding department record
 
 2.1 Main scenario
 * User clicks the "add" button;
@@ -118,10 +118,10 @@ Aggregate function: Average salary = total salary of employees / number of emplo
 * User clicks the "add" button;
 * Application displays form for entering data;
 * User enters the department name and press the "Cancel" button;
-* A record about the new department will not be stored in database.
+* A record about the new department will not be stored in database;
 * Application displays a list of departments without the abovementioned record.
 
-![Add-department](add-department.png)
+![add-department](add-department.png)
 Fig.1.2
 
 Fields required when adding a new department:
@@ -145,10 +145,10 @@ Data validation:
 * User clicks the "Edit" button;
 * Application displays form for editing data;
 * User enters a new name either makes no changes and clicks the "Cancel" button;
-* The edited record won't be stored in database.
+* The edited record won't be stored in database;
 * List of departments without changes will be displayed.
 
-![Edit-department](edit-department.png)
+![edit-department](edit-department.png)
 Fig.1.3
 
 4 Deleting department record
@@ -168,20 +168,22 @@ Fig.1.3
 * Record will not be deleted from database;
 * List of departments without changes will be displayed.
 
-![Remove-department](remove-department.png)
+![delete-department](delete-department.png)
 Fig.1.4
 
 ### Employee area
 
 1 Displaying list of employees
+
 Main scenario
 * User clicks the "Employee" tab;
 * Application displays list of all employees.
 
-![Employe](employe.png)
+![employe](employee.png)
+Fig.1.5
 
 There are following columns:
-* Department - department of employee;
+* Department - employee's department;
 * First name - employee's first name;
 * Second salary - employee's second name;
 * Date of birth - employee's date of birth;
@@ -201,16 +203,14 @@ There are following columns:
 * User sets the date value in the "to" field and clicks the "Refresh" button;
 * Application displays a list of employees with the date of birth which is smaller than the date specified in the "to" field (limits included).
 
-TODO img
-
-3 Adding employee
+3 Adding employee record
 
 3.1 Main scenario
 * User clicks the "add" button;
 * Application displays form for entering data;
 * User enters the employee's name and press the "Save" button;
 * If the entered data are incorrect, a message will be displayed;
-* If the date are valid, then a record will be added to database;
+* If the data are valid, then a record will be added to database;
 * If an error occurs, then an error message will be displayed;
 * If a new employee is successfully added, then a list of employees with the added record will be displayed.
 
@@ -218,13 +218,13 @@ TODO img
 * User clicks the "add" button;
 * Application displays form for entering data;
 * User enters the required data and press the "Cancel" button;
-* A record about the new employee will not be stored in database.
+* A record about the new employee will not be stored in database;
 * Application displays a list of employees without the abovementioned record.
 
-![Add-department](add-department.png)
+![add-employee](add-employee.png)
 Fig.1.2
 
-When adding an employee, the followng fields are available:
+When adding an employee, the following fields are available:
 * Department - selected from drop-down list;
 * First name - employee's first name;
 * Second name - employee's second name;
@@ -232,8 +232,8 @@ When adding an employee, the followng fields are available:
 * Salary - employee's salary.
 
 Data validation:
-* First name - maximum length 100 characters;
-* Second name - maximum length 100 characters;
+* First name - maximum length of 100 characters;
+* Second name - maximum length of 100 characters;
 * Date of birth - in format dd.mm.yyyy;
 * Salary - decimal number with 2 decimal places.
 
@@ -255,7 +255,7 @@ Data validation:
 * The edited record won't be stored in database;
 * List of employees without changes will be displayed.
 
-![Edit-department](edit-department.png)
+![edit-employee](edit-employee.png)
 Fig.1.3
 
 Data validation:
@@ -280,7 +280,7 @@ Data validation:
 * Record will not be deleted from database;
 * List of employees without changes will be displayed.
 
-![Remove-department](remove-department.png)
+![delete-employee](delete-employee.png)
 Fig.1.4
 
 # Other Non-Functional Requirements 
