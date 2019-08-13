@@ -94,6 +94,7 @@ Main scenario
 * Application displays list of existing departments
 
 ![department](department.png)
+
 Fig.1.1
 
 There are following columns:
@@ -122,6 +123,7 @@ Aggregate function: Average salary = total salary of employees / total number of
 * Application displays a list of departments without the abovementioned record.
 
 ![add-department](add-department.png)
+
 Fig.1.2
 
 Fields required when adding a new department:
@@ -149,6 +151,7 @@ Data validation:
 * List of departments without changes will be displayed.
 
 ![edit-department](edit-department.png)
+
 Fig.1.3
 
 4 Deleting department record
@@ -169,6 +172,7 @@ Fig.1.3
 * List of departments without changes will be displayed.
 
 ![delete-department](delete-department.png)
+
 Fig.1.4
 
 ### Employee area
@@ -180,6 +184,7 @@ Main scenario
 * Application displays list of all employees.
 
 ![employe](employee.png)
+
 Fig.1.5
 
 There are following columns:
@@ -222,7 +227,8 @@ There are following columns:
 * Application displays a list of employees without the abovementioned record.
 
 ![add-employee](add-employee.png)
-Fig.1.2
+
+Fig.1.6
 
 When adding an employee, the following fields are available:
 * Department - selected from drop-down list;
@@ -256,7 +262,8 @@ Data validation:
 * List of employees without changes will be displayed.
 
 ![edit-employee](edit-employee.png)
-Fig.1.3
+
+Fig.1.7
 
 Data validation:
 * TODO
@@ -281,7 +288,8 @@ Data validation:
 * List of employees without changes will be displayed.
 
 ![delete-employee](delete-employee.png)
-Fig.1.4
+
+Fig.1.8
 
 # Other Non-Functional Requirements 
 ---
