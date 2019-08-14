@@ -86,7 +86,7 @@ There are no external communication interface requirements.
 
 ## System Features
 
-### Department area
+### Department tab
 
 1 Displaying list of departments
 Main scenario
@@ -175,7 +175,7 @@ Fig.1.3
 
 Fig.1.4
 
-### Employee area
+### Employee tab
 
 1 Displaying list of employees
 
@@ -265,11 +265,6 @@ Data validation:
 
 Fig.1.7
 
-Data validation:
-* TODO
-* TODO
-* TODO
-
 5 Deleting employee record
 
 5.2 Main scenario
@@ -293,16 +288,8 @@ Fig.1.8
 
 # Other Non-Functional Requirements 
 ---
-## Performance Requirements
-
-## Safety Requirements
-
 ## Security Requirements
 
 ## Software Quality Attributes
 
 ## Business Rules
-
-# Appendix A: Glossary
-
-# Appendix B: Analysis Models

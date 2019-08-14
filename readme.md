@@ -1,7 +1,6 @@
 # Project Name
-##### Department management.
-The application allows you to work with a database of department employees:
-* display,
-* edit,
-* add,
-* delete personal information.
+## Web Application Office Manager
+Office Manager will provide the following functions:
+* displaying list of departments
+* displaying list of employees
+* adding/editing/deleting department/employee information
