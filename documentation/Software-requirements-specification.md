@@ -190,7 +190,7 @@ Fig.1.5
 There are following columns:
 * Department - employee's department;
 * First name - employee's first name;
-* Second salary - employee's second name;
+* Last name - employee's last name;
 * Date of birth - employee's date of birth;
 * Salary - employee's salary.
 
@@ -233,13 +233,13 @@ Fig.1.6
 When adding an employee, the following fields are available:
 * Department - selected from drop-down list;
 * First name - employee's first name;
-* Second name - employee's second name;
+* Last name - employee's last name;
 * Date of birth - employee's date of birth;
 * Salary - employee's salary.
 
 Data validation:
 * First name - maximum length of 100 characters;
-* Second name - maximum length of 100 characters;
+* Last name - maximum length of 100 characters;
 * Date of birth - in format dd.mm.yyyy;
 * Salary - decimal number with 2 decimal places.
 
