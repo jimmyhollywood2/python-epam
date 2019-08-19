@@ -1,0 +1,100 @@
+*{
+    font-family: "Garamond";
+    font-size: 14pt;
+}
+body{
+    margin:0;
+    padding:0;
+    height: 100%;
+    background-color: rgb(241, 241, 241);
+}
+h2{
+    text-align: center;
+}
+a img{
+    width:25px;
+}
+.input-add-data{
+    min-width:400px;
+    padding-left: 5px;
+    padding-right: 5px;
+    height: 1.5em;
+    float: left;
+}
+.container{
+    margin:0 10% 0 10%;
+}
+/*====Text====*/
+.center{
+    text-align: center;
+}
+/*====Links====*/
+.link{
+    text-decoration: none;
+    background-color: rgb(204, 204, 204);
+    color:black;
+}
+.active-link{
+    background-color:rgb(157, 255, 173) ;
+}
+a.link:hover{
+    box-shadow: 1px 1px 10px black;
+    background-color:rgb(191, 224, 255);
+}
+a.link:active{
+    background-color:rgb(140, 200, 255);
+}
+.save-link{
+    background-color:rgb(157, 255, 173) ;
+}
+.cancel-link{
+    background-color:rgb(255, 157, 157) ;
+}
+
+/*====Menu====*/
+.menu-bar-grid-wrapper{
+    display:grid;
+    grid-template-columns: 200px 200px 1fr 100px;
+    text-align: center;
+}
+.menu-bar-grid-wrapper-add{
+    display:grid;
+    grid-template-columns: 200px 200px 1fr 100px 100px;
+    text-align: center;
+}
+.menu-bar-item{
+    border:1px black solid;
+    border-radius: 3px;
+    font-size: 1.3em;
+    padding:5px;
+}
+
+/*====Table of data====*/
+table{
+    margin-left:auto;
+    margin-right: auto;
+    width: 100%;
+}
+table,th,td{
+    border-collapse: collapse;
+    word-wrap: break-word;
+}
+.table-with-border td,th{
+    border:1px black solid;
+    padding:5px;
+    text-align: center;
+}
+.table-without-border th,td{
+    border:none;
+    padding:5px;
+    text-align: center;
+}
+
+/*====Display====*/
+.inline-block{
+    display: inline-block;
+}
+/*====Margin&Padding====*/
+.pb-1{
+    padding-bottom: 1em;
+}
