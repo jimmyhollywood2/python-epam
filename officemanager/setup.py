@@ -15,6 +15,12 @@ setup(
     license='MIT License',
     description='A simple Django app to manage departments and employees.',
     long_description=README,
+    nstall_requires=[
+        'django==2.2',
+        'django-mysql>=3.2',
+        'mysqlclient>=1.3',
+        'djangorestframework>=3.10.2'
+        ],
     author='Dmitri Zawadski',
     author_email='dzdimati@gmail.com',
     classifiers=[
