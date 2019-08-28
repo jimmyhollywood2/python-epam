@@ -10,13 +10,15 @@ setup(
     packages=find_packages(),
     license='MIT License',
     description='A simple Django app to manage departments and employees.',
+    #coveralls or python-coveralls?
     install_requires=[
         'django==2.2.4',
         'django-mysql>=3.2',
         'djangorestframework>=3.10.2',
         'mysqlclient>=1.4.4',
         'pylint',
-        'coveralls'
+        'coveralls',
+        'python-coveralls'
         ],
     author='Dmitri Zawadski',
     author_email='dzdimati@gmail.com',
