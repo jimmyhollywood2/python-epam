@@ -18,7 +18,6 @@ setup(
         'mysqlclient>=1.4.4',
         'pylint',
         'coveralls',
-        'python-coveralls'
         ],
     author='Dmitri Zawadski',
     author_email='dzdimati@gmail.com',
