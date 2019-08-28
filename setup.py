@@ -10,7 +10,7 @@ setup(
     packages=find_packages(),
     license='MIT License',
     description='A simple Django app to manage departments and employees.',
-    nstall_requires=[
+    install_requires=[
         'django==2.2.4',
         'django-mysql>=3.2',
         'djangorestframework>=3.10.2',
