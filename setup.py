@@ -1,9 +1,6 @@
 import os
 from setuptools import find_packages, setup
 
-with open(os.path.join(os.path.dirname(__file__), 'README.md')) as readme:
-    README = readme.read()
-
 # allow setup.py to be run from any path
 os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
@@ -11,24 +8,24 @@ setup(
     name='django-office-manager',
     version='0.1',
     packages=find_packages(),
-    include_package_data=True,
     license='MIT License',
     description='A simple Django app to manage departments and employees.',
-    long_description=README,
     nstall_requires=[
-        'django==2.2',
+        'django==2.2.4',
         'django-mysql>=3.2',
-        'mysqlclient>=1.3',
-        'djangorestframework>=3.10.2'
+        'djangorestframework>=3.10.2',
+        'mysqlclient>=1.4.4',
+        'pylint',
+        'python-coveralls'
         ],
     author='Dmitri Zawadski',
     author_email='dzdimati@gmail.com',
     classifiers=[
         'Environment :: Web Environment',
         'Framework :: Django',
-        'Framework :: Django :: 2.2',
+        'Framework :: Django :: 2.2.4',
         'License :: MIT License',
-        'Operating System :: OS Independent',
+        'Operating System :: Linux Ubuntu',
         'Programming Language :: Python',
         'Programming Language :: Python :: 3.6',
         'Topic :: Internet :: WWW/HTTP',
