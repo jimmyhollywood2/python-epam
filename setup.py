@@ -16,7 +16,7 @@ setup(
         'djangorestframework>=3.10.2',
         'mysqlclient>=1.4.4',
         'pylint',
-        'python-coveralls'
+        'coveralls'
         ],
     author='Dmitri Zawadski',
     author_email='dzdimati@gmail.com',
