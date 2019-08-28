@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Employees</title>
+</head>
+<body>
+    <div class="container">
+        <div class="app-name">
+            <h2>OFFICE MANAGER</h2>
+        </div>
+
+        <hr>
+        <div class="menu-bar">
+            <div class="menu-bar-grid-wrapper">
+                <a href="departments.html" class="link"><div class="menu-bar-item">Department</div></a>
+                <a href="employees.html" class="link"><div class="menu-bar-item active-link">Employee</div></a>
+                <div></div>
+                <a href="add-employee.html" class="link"><div class="menu-bar-item">add</div></a>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="center">
+            <div class="inline-block pb-1">
+                <label for="birth-from">date of birth from:</label>
+                <input type="date" id="birth-from">
+            </div>
+            <div class="inline-block pb-1">
+                <label for="birth-to">to:</label>
+                <input type="date" id="birth-to">
+            </div>
+            <input type="image" src="refresh-black.png" alt="Submit Form" width="30" style="vertical-align: middle" onclick='filter()' onsubmit="return false"/>
+        </div>
+
+        <div class="content">
+            <table id="table-employees" class="table-with-border">
+                <thead>
+                    <tr>
+                        <th>Department</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Date of birth</th>
+                        <th>Salary</th>
+                        <th colspan="2"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Branch of Applied Mainframe Control</td>
+                        <td>Antony</td>
+                        <td>Hopper</td>
+                        <td>01.01.1970</td>
+                        <td>5000.00</td>
+                        <td><a href="edit-employee.html"><img src="edit_black.png"></a></td>
+                        <td><a href="#" onclick="rm_tr(this)"><img src="delete_black.png"></a></td>
+                    </tr>
+                    <tr>
+                        <td>Branch of Internet Data Implementation</td>
+                        <td>Adam</td>
+                        <td>Savage</td>
+                        <td>02.02.1980</td>
+                        <td>6984.96</td>
+                        <td><a href="edit-employee.html"><img src="edit_black.png"></a></td>
+                        <td><a href="#" onclick="rm_tr(this)"><img src="delete_black.png"></a></td>
+                    </tr>
+                    <tr>
+                        <td>Division of Network Programming and Application Technology</td>
+                        <td>Jamie</td>
+                        <td>Hyneman</td>
+                        <td>03.03.1990</td>
+                        <td>6635.45</td>
+                        <td><a href="edit-employee.html"><img src="edit_black.png"></a></td>
+                        <td><a href="#" onclick="rm_tr(this)"><img src="delete_black.png"></a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+<script src="script.js"></script>
+</body>

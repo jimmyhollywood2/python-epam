@@ -1,4 +1,4 @@
-# Project Name
+# Readme
 ## Web Application Office Manager
 Office Manager will provide the following functions:
 * displaying list of departments

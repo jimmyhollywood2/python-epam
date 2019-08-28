@@ -1,0 +1,15 @@
+language: python
+python:
+  - "3.6"
+# command to install dependencies
+services:
+  - mysql
+before_script:
+  - mysql -e 'CREATE DATABASE travisdb;'
+install:
+  - python setup.py -q install
+script:
+  - python officemanager/manage.py migrate
+#  - coverage run --source=officemanager/manage.py test
+after_success:
+  - coveralls

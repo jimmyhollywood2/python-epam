@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Add employee</title>
+</head>
+<body>
+    <div class="container">
+        <div class="app-name">
+            <h2>OFFICE MANAGER</h2>
+        </div>
+
+        <hr>
+        <div class="menu-bar">
+            <div class="menu-bar-grid-wrapper-add">
+                <a href="departments.html" class="link"><div class="menu-bar-item">Department</div></a>
+                <a href="employees.html" class="link"><div class="menu-bar-item">Employee</div></a>
+                <div></div>
+                <a href="employees.html" class="link"><div class="menu-bar-item cancel-link">Cancel</div></a>
+                <a href="employees-someone-added.html" class="link"><div class="menu-bar-item save-link">Save</div></a>
+            </div>
+        </div>
+
+        <br>
+        <hr>
+        <div>
+            <h3 class="center">ADD EMPLOYEE</h3>
+        </div>
+        <hr>
+
+        <div class="content">
+            <table class="table-without-border">
+                <tbody>
+                    <tr>
+                        <td>Department:</td>
+                        <td><select class="input-add-data" name="departments-select">
+                            <option value="Branch of Applied Mainframe Control">Branch of Applied Mainframe Control</option>
+                            <option value="Branch of Internet Data Implementation">Branch of Internet Data Implementation</option>
+                            <option value="Division of Network Programming and Application Technology">Division of Network Programming and Application Technology</option>
+                            </select></td>
+                    </tr>
+                    <tr>
+                        <td>First Name:</td>
+                        <td><input type="text" class="input-add-data"></td>
+                    </tr>
+                    <tr>
+                        <td>Last Name:</td>
+                        <td><input type="text" class="input-add-data"></td>
+                    </tr>
+                    <tr>
+                        <td>Date of birth:</td>
+                        <td><input type="date" class="input-add-data"></td>
+                    </tr>
+                    <tr>
+                        <td>Salary:</td>
+                        <td><input type="text" class="input-add-data"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
