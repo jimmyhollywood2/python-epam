@@ -8,7 +8,7 @@ before_script:
 install:
   - python setup.py -q install
 script:
-  - python officemanager/manage.py migrate
+  - python officemanager/manage.py test
 # this command exited with error. No file to run: 'test'
 #  - coverage run --source=officemanager/manage.py test
 after_success:
