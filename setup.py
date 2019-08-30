@@ -16,6 +16,7 @@ setup(
         'django-mysql>=3.2',
         'djangorestframework>=3.10.2',
         'mysqlclient>=1.4.4',
+        'pylint',
         'pylint-django',
         'python-coveralls',
         ],

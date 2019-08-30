@@ -8,8 +8,14 @@ before_script:
 install:
   - python setup.py -q install
 script:
+  - pylint --load-plugins pylint_django officemanager/department/*
   - python officemanager/manage.py test
 # this command exited with error. No file to run: 'test'
 #  - coverage run --source=officemanager/manage.py test
 after_success:
   - coveralls
+notifications:
+  email:
+    recipients:
+      - dzdimati@gmail.com
+    on_succes: change
