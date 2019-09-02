@@ -6,9 +6,9 @@ services:
 before_script:
   # - mysql -e 'CREATE DATABASE travisdb;'
 install:
-  - python setup.py -q install
+  - python setup.py install -q
 script:
-  - pylint --load-plugins pylint_django officemanager/department/*
+  #- pylint --load-plugins pylint_django officemanager/department/*
   - python officemanager/manage.py test
 # this command exited with error. No file to run: 'test'
 #  - coverage run --source=officemanager/manage.py test
