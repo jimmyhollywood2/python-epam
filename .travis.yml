@@ -10,6 +10,10 @@ install:
 script:
   #- pylint --load-plugins pylint_django officemanager/department/*
   - python officemanager/manage.py test
+  - python officemanager/manage.py makemigrations
+  - python officemanager/manage.py showemigrations
+  - python officemanager/manage.py migrate
+  - python officemanager/manage.py showemigrations
 # this command exited with error. No file to run: 'test'
 #  - coverage run --source=officemanager/manage.py test
 after_success:
