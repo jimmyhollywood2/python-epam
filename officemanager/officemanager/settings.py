@@ -79,18 +79,18 @@ WSGI_APPLICATION = 'officemanager.wsgi.application'
 if 'TRAVIS' in os.environ:
     DATABASES = {
         'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            }
+        }
+else:
+    DATABASES = {
+        'default': {
             'ENGINE': 'django.db.backends.mysql',
             'NAME': 'travisdb',
             'USER': 'root',
             'PASSWORD': '',
             'HOST': 'localhost',
             'PORT': '',
-            }
-        }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
         }
     }
 '''
