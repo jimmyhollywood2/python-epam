@@ -1,9 +1,9 @@
 from django.db import models
 
-class departments(models.Model):
+class Departments(models.Model):
     name = models.CharField(max_length=200)
 
-class employees(models.Model):
+class Employees(models.Model):
     department = models.ForeignKey("departments", on_delete=models.CASCADE)
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
