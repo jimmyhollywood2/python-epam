@@ -94,6 +94,13 @@ WSGI_APPLICATION = 'officemanager.wsgi.application'
 if 'TRAVIS' in os.environ:
     DATABASES = {
         'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': ':memory:', 
+        }
+    }
+else:
+    DATABASES = {
+        'default': {
             'ENGINE': 'django.db.backends.mysql',
             'NAME': 'djangooffice',
             'USER': 'epam',
@@ -102,13 +109,6 @@ if 'TRAVIS' in os.environ:
             'PORT': '',
             }
         }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': ':memory:', 
-        }
-    }
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
