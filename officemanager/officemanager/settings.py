@@ -80,6 +80,7 @@ if 'TRAVIS' in os.environ:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
+            'NAME' : 'mysqlite',
             }
         }
 else:
