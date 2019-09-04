@@ -7,13 +7,12 @@ before_script:
   # - mysql -e 'CREATE DATABASE travisdb;'
 install:
   - python setup.py install -q
-script:
-  #- pylint --load-plugins pylint_django officemanager/department/*
-  - python officemanager/manage.py test
+script:  
   - python officemanager/manage.py makemigrations
-  - python officemanager/manage.py showmigrations
   - python officemanager/manage.py migrate
-  - python officemanager/manage.py showmigrations
+
+#- pylint --load-plugins pylint_django officemanager/department/*
+
 # this command exited with error. No file to run: 'test'
 #  - coverage run --source=officemanager/manage.py test
 after_success:
