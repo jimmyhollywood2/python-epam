@@ -2,7 +2,7 @@
 
 from django.db import migrations
 
-title_list = [
+TITLE_LIST = [
     'Business Intelligence',
     'IT Management',
     'Administration',
@@ -15,9 +15,9 @@ title_list = [
 
 def add_titles_dep(apps, schema_editor):
     Dep = apps.get_model('department', 'Departments')
-    Dep.objects.bulk_create((Dep(name = i) for i in title_list))
+    Dep.objects.bulk_create((Dep(name=i) for i in TITLE_LIST))
 
-def reverce_add(apps,scheme_editor):
+def reverce_add(apps, schema_editor):
     Dep = apps.get_model('department', 'Departments')
     Dep.objects.all().delete()
 
@@ -28,5 +28,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(add_titles_dep,reverce_add),
+        migrations.RunPython(add_titles_dep, reverce_add),
     ]

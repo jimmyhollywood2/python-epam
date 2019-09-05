@@ -72,30 +72,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'officemanager.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/2.2/ref/settings/#databases
-
-'''DATABASES = {
-    'default': {
-        'ENGINE':   'django.db.backends.mysql',
-            'NAME':     'djangooffice',
-            'USER':     'epam',
-            'PASSWORD': '138456',
-            'HOST':     'localhost',
-            'PORT':     '',
-    },
-    'TEST':{
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': ':memory:', 
-    }
-}'''
-
 if 'TRAVIS' in os.environ:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': ':memory:', 
+            'NAME': ':memory:',
         }
     }
 else:
@@ -127,7 +108,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/

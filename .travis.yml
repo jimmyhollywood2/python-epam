@@ -8,7 +8,7 @@ before_script:
 install:
   - python setup.py install -q
 script:
-  - pylint --load-plugins pylint_django officemanager/department/*
+  - pylint --load-plugins pylint_django officemanager/*/**.py
 #  - coverage run --source=officemanager/manage.py test
 after_success:
   - coveralls

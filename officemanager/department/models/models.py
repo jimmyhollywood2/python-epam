@@ -8,4 +8,4 @@ class Employees(models.Model):
     first_name = models.CharField(max_length=100, blank=False, null=False)
     last_name = models.CharField(max_length=100, blank=False, null=False)
     d_of_b = models.DateField(auto_now=False, auto_now_add=False, blank=False, null=False)
-    salary = models.DecimalField( max_digits=9, decimal_places=2, blank=False, null=False)
+    salary = models.DecimalField(max_digits=9, decimal_places=2, blank=False, null=False)
