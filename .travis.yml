@@ -1,15 +1,19 @@
 language: python
 python:
   - "3.6"
-# command to install dependencies
 services:
-  - mysql
+  # - mysql
 before_script:
-  - mysql -e 'CREATE DATABASE travisdb;'
+  # - mysql -e 'CREATE DATABASE travisdb;'
 install:
-  - python setup.py -q install
+  - python setup.py install -q
 script:
-  - python officemanager/manage.py migrate
+  - pylint --load-plugins pylint_django officemanager/*/**.py
 #  - coverage run --source=officemanager/manage.py test
 after_success:
   - coveralls
+notifications:
+  email:
+    recipients:
+      - dzdimati@gmail.com
+    on_succes: change
