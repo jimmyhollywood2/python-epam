@@ -47,15 +47,20 @@ def add_employees(apps, schema_editor):
         'Meladze'
     ]
     
-    for i in range(100):
-        emp = Emp(
+    Emp.objects.bulk_create(
+        (Emp(
             department = dep_list[randint(0,len(dep_list)-1)],
             first_name = fname_list[randint(0,len(fname_list)-1)],
             last_name = lname_list[randint(0,len(lname_list)-1)],
             d_of_b = '{}-{}-{}'.format(randint(1950,2010),randint(1,12),randint(1,28)),
             salary = round(random()*10000,2)
-        )
-        emp.save()
+        ) for i in range(100))
+    )
+
+def reverce_add(apps, schema_editor):
+    Emp = apps.get_model('department','Employees')
+    Emp.objects.all().delete()
+
 class Migration(migrations.Migration):
 
     dependencies = [
@@ -63,5 +68,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(add_employees)
+        migrations.RunPython(add_employees, reverce_add)
     ]

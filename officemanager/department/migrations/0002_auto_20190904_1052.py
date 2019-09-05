@@ -2,22 +2,24 @@
 
 from django.db import migrations
 
-def add_titles_dep(apps, schema_editor):
-    title_list = [
-        'Business Intelligence',
-        'IT Management',
-        'Administration',
-        'IT Procurement',
-        'IT Security',
-        'Network Adminstration',
-        'Systems Analyst & Architecture',
-        'User Support & Services'
+title_list = [
+    'Business Intelligence',
+    'IT Management',
+    'Administration',
+    'IT Procurement',
+    'IT Security',
+    'Network Adminstration',
+    'Systems Analyst & Architecture',
+    'User Support & Services'
     ]
 
-    for line in title_list:
-        Dep = apps.get_model('department', 'Departments')
-        newdep = Dep(name = line)
-        newdep.save()
+def add_titles_dep(apps, schema_editor):
+    Dep = apps.get_model('department', 'Departments')
+    Dep.objects.bulk_create((Dep(name = i) for i in title_list))
+
+def reverce_add(apps,scheme_editor):
+    Dep = apps.get_model('department', 'Departments')
+    Dep.objects.all().delete()
 
 class Migration(migrations.Migration):
 
@@ -26,8 +28,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(add_titles_dep),
+        migrations.RunPython(add_titles_dep,reverce_add),
     ]
-
-
-
