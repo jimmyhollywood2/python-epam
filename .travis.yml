@@ -1,16 +1,12 @@
 language: python
 python:
   - "3.6"
-services:
-  # - mysql
-before_script:
-  # - mysql -e 'CREATE DATABASE travisdb;'
 install:
   - python setup.py install -q
 script:
   - pylint --load-plugins pylint_django officemanager/*/**.py
-  - python officemanager/manage.py test
-  - coverage run --source=officemanager/manage.py test
+  - python officemanager/manage.py test department
+  - coverage run --source=officemanager/manage.py test department
 after_success:
   - coveralls
 notifications:
