@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'department'
+    'department',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [
@@ -72,24 +73,29 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'officemanager.wsgi.application'
 
-if 'TRAVIS' in os.environ:
-    DATABASES = {
-        'default': {
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSIONS_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
+
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'djangooffice',
+        'USER': 'epam',
+        'PASSWORD': '138456',
+        'HOST': 'localhost',
+        'PORT': '',
+        'TEST' : {
             'ENGINE': 'django.db.backends.sqlite3',
             'NAME': ':memory:',
         }
     }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'djangooffice',
-            'USER': 'epam',
-            'PASSWORD': '138456',
-            'HOST': 'localhost',
-            'PORT': '',
-            }
-        }
+}
+
+
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -127,3 +133,24 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Logging config
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'debug.log'),
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}

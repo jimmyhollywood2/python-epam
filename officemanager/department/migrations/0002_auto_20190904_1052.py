@@ -14,11 +14,11 @@ TITLE_LIST = [
     ]
 
 def add_titles_dep(apps, schema_editor):
-    Dep = apps.get_model('department', 'Departments')
+    Dep = apps.get_model('department', 'Department')
     Dep.objects.bulk_create((Dep(name=i) for i in TITLE_LIST))
 
 def reverce_add(apps, schema_editor):
-    Dep = apps.get_model('department', 'Departments')
+    Dep = apps.get_model('department', 'Department')
     Dep.objects.all().delete()
 
 class Migration(migrations.Migration):

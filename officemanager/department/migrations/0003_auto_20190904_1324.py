@@ -5,8 +5,8 @@ from random import randint, random
 
 def add_employees(apps, schema_editor):
     
-    Emp = apps.get_model('department','Employees')
-    Dep = apps.get_model('department', 'Departments')
+    Emp = apps.get_model('department','Employee')
+    Dep = apps.get_model('department', 'Department')
     dep_list = Dep.objects.all()
     fname_list = [
         'Dmitri',
@@ -58,7 +58,7 @@ def add_employees(apps, schema_editor):
     )
 
 def reverce_add(apps, schema_editor):
-    Emp = apps.get_model('department','Employees')
+    Emp = apps.get_model('department','Employee')
     Emp.objects.all().delete()
 
 class Migration(migrations.Migration):
