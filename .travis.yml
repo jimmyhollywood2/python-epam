@@ -5,7 +5,7 @@ install:
   - python setup.py install -q
 script:
   - pylint --load-plugins pylint_django officemanager/*/**.py
-  - coverage run --source='.' officemanager/manage.py test --settings=settings_test department
+  - coverage run --source='.' officemanager/manage.py test department
 after_success:
   - coveralls
 notifications:
