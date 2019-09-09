@@ -3,6 +3,7 @@ python:
   - "3.6"
 install:
   - python setup.py install -q
+  - pip install coveralls
 script:
   - pylint --load-plugins pylint_django officemanager/*/**.py
   - coverage run --source='.' officemanager/manage.py test department
