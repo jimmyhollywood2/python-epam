@@ -81,15 +81,8 @@ REST_FRAMEWORK = {
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'django.db.backends.sqlite3',
         'NAME': 'djangooffice',
-        'USER': 'epam',
-        'PASSWORD': '138456',
-        'HOST': 'localhost',
-        'PORT': '',
-        'TEST' : {
-            'NAME': 'test',
-        }
     },
 }
 
