@@ -11,7 +11,7 @@ class DepartmentSerializer(serializers.ModelSerializer):
 
 class EmpoyeeSerializer(serializers.ModelSerializer):
     """Configure employee's serializer"""
-    department = serializers.StringRelatedField()
+    #department = serializers.StringRelatedField()
     class Meta:
         model = Employee
         fields = '__all__'

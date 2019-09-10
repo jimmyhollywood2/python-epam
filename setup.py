@@ -18,7 +18,6 @@ setup(
         'mysqlclient>=1.4.4',
         'pylint-django',
         'pylint',
-        'coverage',
         ],
     author='Dmitri Zawadski',
     author_email='dzdimati@gmail.com',
