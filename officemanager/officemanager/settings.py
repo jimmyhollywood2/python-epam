@@ -77,7 +77,8 @@ WSGI_APPLICATION = 'officemanager.wsgi.application'
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSIONS_CLASSES': [
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-    ]
+    ],
+    'TEST_REQUEST_DEFAULT_FORMAT': 'json',
 }
 
 DATABASES = {

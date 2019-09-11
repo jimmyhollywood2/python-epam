@@ -7,7 +7,7 @@ class Department(models.Model):
         return self.name
 
 class Employee(models.Model):
-    department = models.ForeignKey(Department, on_delete=models.CASCADE, blank=False, null=False)
+    department = models.ForeignKey('Department', on_delete=models.CASCADE, blank=False, null=False)
     first_name = models.CharField(max_length=100, blank=False, null=False)
     last_name = models.CharField(max_length=100, blank=False, null=False)
     d_of_b = models.DateField(auto_now=False, auto_now_add=False, blank=False, null=False, verbose_name='Date of birth')
