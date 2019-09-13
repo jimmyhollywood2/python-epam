@@ -31,27 +31,27 @@ class RESTTestCase(APITestCase):
         """
         View records
         """
-        resp = self.client.get('/department/')
+        resp = self.client.get('/api/department/')
         self.assertEqual(resp.status_code, 200, 'Department list failed')
-        resp = self.client.get('/employee/')
+        resp = self.client.get('/api/employee/')
         self.assertEqual(resp.status_code, 200, 'Employee list failed')
-        resp = self.client.get('/employee/2/')
+        resp = self.client.get('/api/employee/2/')
         self.assertEqual(resp.status_code, 200, 'Employee detail failed')
-        resp = self.client.get('/department/2/')
+        resp = self.client.get('/api/department/2/')
         self.assertEqual(resp.status_code, 200, 'Department detail failed')
     
     def test_create_department(self):
         """
         Create new department
         """
-        resp = self.client.post('/department/', {'name': 'IT department'}, format='json')
+        resp = self.client.post('/api/department/', {'name': 'IT department'}, format='json')
         self.assertEqual(resp.status_code, 201, 'Create department failed')
 
     def test_create_employee(self):
         """
         Create new employee
         """
-        resp = self.client.post('/employee/', {
+        resp = self.client.post('/api/employee/', {
             'department': Department.objects.get(pk=1).pk,
             'first_name': 'Bruce',
             'last_name': 'Willis',
@@ -64,7 +64,7 @@ class RESTTestCase(APITestCase):
         """
         Edit record of department table
         """
-        resp = self.client.put('/department/1/', {'name': 'New It dep'}, format='json')
+        resp = self.client.put('/api/department/1/', {'name': 'New It dep'}, format='json')
         self.assertEqual(resp.status_code, 200)
     
     def test_put_employee(self):
@@ -78,21 +78,21 @@ class RESTTestCase(APITestCase):
             'd_of_b': '1955-03-19',
             'salary': 15000.00
         }
-        resp = self.client.put('/employee/1/', emp_data, format='json')
+        resp = self.client.put('/api/employee/1/', emp_data, format='json')
         self.assertEqual(resp.status_code, 200)
     
     def test_delete_department(self):
         """
         Delete record from department table
         """
-        self.client.delete('/department/1/')
-        resp = self.client.get('/department/1/')
+        self.client.delete('/api/department/1/')
+        resp = self.client.get('/api/department/1/')
         self.assertEqual(resp.status_code, 404)
 
     def test_delete_employee(self):
         """
         Delete record from employee table
         """
-        self.client.delete('/employee/1/')
-        resp = self.client.get('/employee/1/', format='json')
+        self.client.delete('/api/employee/1/')
+        resp = self.client.get('/api/employee/1/', format='json')
         self.assertEqual(resp.status_code, 404)

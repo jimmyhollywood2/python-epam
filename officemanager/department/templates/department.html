@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>Department name</th>
+                <th>Average salary</th>
+                <th colspan="2"></th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            {% for item in dep_list %}
+                <tr>
+                    <td>{{item.name}}</td>
+                    <td>{{item.average_salary}}</td>
+                    <td><a href='{{item.id}}/'>Edit</a></td>
+                </tr>
+            {% endfor %}
+                
+        </tbody>
+    </table>
+    
+{% endblock content %}

@@ -1,0 +1,38 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <title>{{title|default:"Untitled page"}}</title>
+</head>
+<body style="overflow-y: scroll;">
+    <div class="container bg-light">
+
+        <div class="text-center">
+            <h2>OFFICE MANAGER</h2>
+        </div>
+
+        <nav class='navbar navbar-inverce'>
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link btn btn-dark mr-1" href="/department">Department</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link btn btn-dark" href="/employee">Employee</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-right">
+                <li class="nav-item">
+                    <a class="nav-link btn btn-dark" href="#">add</a>
+                </li>
+            </ul>
+        </nav>
+        <div id="data-list">
+            
+            {% block content %}
+                
+            {% endblock content %}
+                
+        </div>
+    </div>
+</body>

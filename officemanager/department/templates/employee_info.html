@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<table>
+    <tr>
+        <td>Department</td>
+        <td>{{info.department}}</td>
+    </tr>
+    <tr>
+        <td>First name</td>
+        <td>{{info.first_name}}</td>
+    </tr>
+    <tr>
+            <td>Last name</td>
+            <td>{{info.last_name}}</td>
+        </tr>
+    <tr>
+        <td>Date of birth</td>
+        <td>{{info.d_of_b}}</td>
+    </tr>
+    <tr>
+        <td>Salary</td>
+        <td>{{info.salary}}</td>
+    </tr>
+</table>
+    
+{% endblock content %}

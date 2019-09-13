@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>Department</th>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Date of birth</th>
+                <th>Salary</th>
+                <th colspan="2"></th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            {% for item in emp_list %}
+                <tr>
+                    <td>{{item.department}}</td>
+                    <td>{{item.first_name}}</td>
+                    <td>{{item.last_name}}</td>
+                    <td>{{item.d_of_b}}</td>
+                    <td>{{item.salary}}</td>
+                    <td><a href='{{item.id}}/'>Edit</a></td>
+                </tr>
+            {% endfor %}
+                
+        </tbody>
+    </table>
+    
+{% endblock content %}
