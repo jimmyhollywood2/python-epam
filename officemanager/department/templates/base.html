@@ -8,26 +8,34 @@
 <body style="overflow-y: scroll;">
     <div class="container bg-light">
 
-        <div class="text-center">
+        <div class="text-center pt-4">
             <h2>OFFICE MANAGER</h2>
         </div>
+        
+            <nav class='navbar navbar-inverce'>
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-dark mr-1" href="/department/">Department</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-dark" href="/employee/">Employee</a>
+                    </li>
+                </ul>
+                
+                    <ul class="nav navbar-right">
 
-        <nav class='navbar navbar-inverce'>
-            <ul class="nav">
-                <li class="nav-item">
-                    <a class="nav-link btn btn-dark mr-1" href="/department">Department</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link btn btn-dark" href="/employee">Employee</a>
-                </li>
-            </ul>
-            <ul class="nav navbar-right">
-                <li class="nav-item">
-                    <a class="nav-link btn btn-dark" href="#">add</a>
-                </li>
-            </ul>
-        </nav>
-        <div id="data-list">
+                        {% block right-nav %}
+
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-dark" href="{{add_url}}">add</a>
+                        </li>
+
+                        {% endblock right-nav %}
+
+                    </ul>
+            </nav>
+
+        <div id="content">
             
             {% block content %}
                 
@@ -35,4 +43,5 @@
                 
         </div>
     </div>
+<script src="{% static 'javascript/script.js' %}"></script>
 </body>

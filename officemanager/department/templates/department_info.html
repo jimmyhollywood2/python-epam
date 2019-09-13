@@ -1,12 +1,21 @@
 {% extends 'base.html' %}
 
+{% block right-nav %}
+    <li class="nav-item pr-1">        
+        <input form="save" class="btn btn-success" type="submit" value="Save" />
+    </li>
+    <li class="nav-item">
+        <a class="nav-link btn btn-secondary" href="#">Cancel</a>
+    </li>
+{% endblock right-nav %}
+    
 {% block content %}
 
-<table>
-    <tr>
-        <td>Department name</td>
-        <td>{{info.name}}</td>
-    </tr>
-</table>
-    
+Department name
+<form id="save" action="" method="POST">
+    {% csrf_token %}
+    <input type="hidden" name="method" value="put">
+    <input name="name" value="{{info.name}}">
+</form>
+
 {% endblock content %}
