@@ -10,9 +10,10 @@ class StringReprTestCase(TestCase):
         """
         Testing string representation of the model
         """
-        dep = Department(name="New")
+        dep = Department(name="Test string representation")
         dep.save()
-        self.assertEqual(str(dep), dep.name)
+        dep_name = Department.objects.get(name="Test string representation")
+        self.assertEqual(str(dep_name), dep.name)
     
     def test_str(self):
         """

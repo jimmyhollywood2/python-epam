@@ -1,4 +1,5 @@
 [run]
 omit =
     **/migrations/*
-    apps.py
+    officemanager/department/apps.py
+    officemanager/department/admin.py
