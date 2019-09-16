@@ -1,8 +1,30 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block right-nav %}
+
+<li class="nav-item">
+    <a class="nav-link btn btn-dark" href="add/">add</a>
+</li>
+    
+{% endblock right-nav %}
 
 {% block content %}
 
-<table class="table table-striped">
+<div class="text-center pb-2">
+    <span class="pr-4">
+        <label for="birth-from">date of birth from:</label>
+        <input type="date" id="birth-from">
+    </span>
+    <span>
+        <label for="birth-to">to:</label>
+        <input type="date" id="birth-to">
+    </span>
+    <input type="image" src="{% static 'img/refresh.png' %}" alt="Submit Form" width="30" style="vertical-align: middle" onclick='filter()' onsubmit="return false"/>
+</div>
+
+<form id="save" action="" method="POST">
+<table id="table-employees" class="table table-striped" style="table-layout: fixed">
         <thead class="thead-dark">
             <tr>
                 <th>Department</th>
@@ -10,23 +32,32 @@
                 <th>Last name</th>
                 <th>Date of birth</th>
                 <th>Salary</th>
-                <th colspan="2"></th>
+                <th colspan="2" style="width: 200px"></th>
             </tr>
         </thead>
         <tbody>
             
-            {% for item in emp_list %}
+            {% for emp in emp_list %}
                 <tr>
-                    <td>{{item.department}}</td>
-                    <td>{{item.first_name}}</td>
-                    <td>{{item.last_name}}</td>
-                    <td>{{item.d_of_b}}</td>
-                    <td>{{item.salary}}</td>
-                    <td><a href='{{item.id}}/'>Edit</a></td>
+                    <td>{{emp.department}}</td>
+                    <td>{{emp.first_name}}</td>
+                    <td>{{emp.last_name}}</td>
+                    <td>{{emp.d_of_b}}</td>
+                    <td>{{emp.salary}}</td>
+                    <td><a class="btn btn-dark" href="{{emp.id}}/">Edit</a></td>
+                    <td>
+                        <form action="{{emp.id}}/" method="POST" onsubmit="return confirm('Do you really want to delete this record?');">
+                            {% csrf_token %}
+                            <input type="hidden" name="method" value="delete">
+                            <input type="hidden" name="id" value="{{emp.id}}">
+                            <input class="btn btn-dark" type="submit" value="Delete">
+                        </form>
+                    </td>
                 </tr>
             {% endfor %}
                 
         </tbody>
     </table>
+</form>
     
 {% endblock content %}

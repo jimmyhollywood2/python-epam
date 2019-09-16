@@ -10,7 +10,7 @@ def add_employees(apps, schema_editor):
     dep_list = Dep.objects.all()
     fname_list = [
         'Dmitri',
-        'ALexandra',
+        'Alexandra',
         'Ivan',
         'Anastasia',
         'Lena',
@@ -53,7 +53,7 @@ def add_employees(apps, schema_editor):
             first_name = fname_list[randint(0,len(fname_list)-1)],
             last_name = lname_list[randint(0,len(lname_list)-1)],
             d_of_b = '{}-{}-{}'.format(randint(1950,2010),randint(1,12),randint(1,28)),
-            salary = round(random()*10000,2)
+            salary = round(random()*20000,2)
         ) for i in range(100))
     )
 

@@ -6,3 +6,46 @@ function rm_tr(element){
         return 0;
     }
 }
+
+function filter(){
+    var input, tr, td;
+
+    input =[document.getElementById('birth-from').value, document.getElementById('birth-to').value];
+    if(input[0] == ""){
+        input[0] = new Date(0,0,0);
+    }
+    else{
+        input[0] = new Date(input[0]);
+    }
+    if(input[1] == ""){
+        input[1] = new Date(9999,12,32);
+    }
+    else{
+        input[1] = new Date(input[1]);
+    }
+    input.forEach(element => {
+        element.setHours(0,0,0,0);
+    });
+
+    if(input[0] > input[1]){
+        alert('Incorrect date format');
+        document.getElementById('birth-from').value = ""
+        document.getElementById('birth-to').value = ""
+        return 0;
+    }
+
+    tr = document.getElementById('table-employees').querySelectorAll('tbody > tr');
+    
+    for(i = 0; i < tr.length; i++){
+        td = tr[i].getElementsByTagName('td')[3].textContent.split('-');
+        console.log(td)
+        console.log(input)
+        dateTd = new Date(td[0], td[1]-1, td[2]);
+        console.log(dateTd)
+        if (dateTd >= input[0] && dateTd <= input[1]){
+            tr[i].style.display = '';}
+        else{
+            tr[i].style.display = 'none';
+        }
+    }
+}

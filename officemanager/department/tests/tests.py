@@ -27,72 +27,121 @@ class StringReprTestCase(TestCase):
         self.assertEqual(str(emp), "Dmitri Zavadski")
 
 class RESTTestCase(APITestCase):
-    def test_list(self):
-        """
-        View records
-        """
+
+    def test_department_list(self):
         resp = self.client.get('/api/department/')
-        self.assertEqual(resp.status_code, 200, 'Department list failed')
+        resp_record = resp.json()[0]
+        asserted = Department.objects.get(pk=resp_record['id']).name
+        self.assertEqual(resp.status_code, 200)
+        self.assertEqual(resp_record['name'], asserted)
+
+    def test_department_by_id(self):
+        resp = self.client.get('/api/department/5/')
+        resp_record = resp.json()
+        asserted = Department.objects.get(pk=5).name
+        self.assertEqual(resp.status_code, 200)
+        self.assertEqual(resp_record['name'], asserted)
+
+    def test_employee_list(self):
         resp = self.client.get('/api/employee/')
-        self.assertEqual(resp.status_code, 200, 'Employee list failed')
-        resp = self.client.get('/api/employee/2/')
-        self.assertEqual(resp.status_code, 200, 'Employee detail failed')
-        resp = self.client.get('/api/department/2/')
-        self.assertEqual(resp.status_code, 200, 'Department detail failed')
-    
+        resp_record = resp.json()[0]
+        asserted = Employee.objects.get(pk=resp_record['id']).first_name
+        self.assertEqual(resp.status_code, 200)
+        self.assertEqual(resp_record['first_name'], asserted)
+
+    def test_employee_by_id(self):
+        resp = self.client.get('/api/employee/5/')
+        resp_record = resp.json()
+        asserted = Employee.objects.get(pk=5)
+        self.assertEqual(resp.status_code, 200)
+        self.assertEqual(resp_record['first_name'], asserted.first_name)
+
     def test_create_department(self):
         """
         Create new department
         """
-        resp = self.client.post('/api/department/', {'name': 'IT department'}, format='json')
-        self.assertEqual(resp.status_code, 201, 'Create department failed')
+        data = {
+            'name': "IT department",
+        }
+        resp = self.client.post('/api/department/', data, format='json')
+        asserted = Department.objects.get(pk=resp.json()['id'])
+        self.assertEqual(resp.status_code, 201)
+        self.assertEqual(data['name'], asserted.name)
 
     def test_create_employee(self):
         """
         Create new employee
         """
-        resp = self.client.post('/api/employee/', {
+        data = {
             'department': Department.objects.get(pk=1).pk,
             'first_name': 'Bruce',
             'last_name': 'Willis',
             'd_of_b': '1955-03-19',
             'salary': 15000.00
-        })
-        self.assertEqual(resp.status_code, 201, 'Employee create failed')
+        }
+        resp = self.client.post('/api/employee/', data, format='json')
+        asserted = Employee.objects.get(pk=resp.json()['id'])
+        self.assertEqual(resp.status_code, 201)
+        self.assertEqual(data['first_name'], asserted.first_name)
+        self.assertEqual(data['last_name'], asserted.last_name)
     
     def test_put_department(self):
         """
         Edit record of department table
         """
-        resp = self.client.put('/api/department/1/', {'name': 'New It dep'}, format='json')
+        data = {
+            'name': 'New name',
+        }
+        resp = self.client.put('/api/department/1/', data, format='json')
+        asserted = Department.objects.get(pk=resp.json()['id'])
         self.assertEqual(resp.status_code, 200)
+        self.assertEqual(data['name'], asserted.name)
     
     def test_put_employee(self):
         """
         Edit record of employee table
         """
-        emp_data = {
+        data = {
             'department': Department.objects.all()[1].pk,
             'first_name': 'Test',
             'last_name': 'Test',
             'd_of_b': '1955-03-19',
             'salary': 15000.00
         }
-        resp = self.client.put('/api/employee/1/', emp_data, format='json')
+        resp = self.client.put('/api/employee/1/', data, format='json')
+        asserted = Employee.objects.get(pk=resp.json()['id'])
         self.assertEqual(resp.status_code, 200)
+        self.assertEqual(data['last_name'], asserted.last_name)
     
     def test_delete_department(self):
         """
         Delete record from department table
         """
-        self.client.delete('/api/department/1/')
-        resp = self.client.get('/api/department/1/')
-        self.assertEqual(resp.status_code, 404)
+        Department.objects.create(name="Test")
+        added_id = Department.objects.get(name="Test").pk
+        self.client.delete('/api/department/{}/'.format(added_id))
+        resp = self.client.get('/api/department/{}/'.format(added_id))
+        self.assertEqual('Not found.', resp.json()['detail'])
 
     def test_delete_employee(self):
         """
         Delete record from employee table
         """
-        self.client.delete('/api/employee/1/')
-        resp = self.client.get('/api/employee/1/', format='json')
-        self.assertEqual(resp.status_code, 404)
+        data = {
+            'department': Department.objects.all()[4],
+            'first_name': 'Test',
+            'last_name': 'Test',
+            'd_of_b': '1955-03-19',
+            'salary': 15000.00
+        }
+        cr = Employee.objects.create(
+            department=data['department'],
+            first_name=data['first_name'],
+            last_name=data['last_name'],
+            d_of_b=data['d_of_b'],
+            salary=data['salary'],
+        )
+        added_id = max([i.id for i in Employee.objects.all()])
+        self.client.delete('/api/employee/{}/'.format(added_id))
+        resp = self.client.get('/api/employee/{}/'.format(added_id))
+        self.assertEqual('Not found.', resp.json()['detail'])

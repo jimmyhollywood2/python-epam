@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <title>{{title|default:"Untitled page"}}</title>
 </head>
 <body style="overflow-y: scroll;">
@@ -25,10 +26,6 @@
                     <ul class="nav navbar-right">
 
                         {% block right-nav %}
-
-                        <li class="nav-item">
-                            <a class="nav-link btn btn-dark" href="{{add_url}}">add</a>
-                        </li>
 
                         {% endblock right-nav %}
 

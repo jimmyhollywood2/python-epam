@@ -25,9 +25,12 @@ ROUTER.register('employee', views.EmployeeViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', views.home),
     path('api/', include(ROUTER.urls)),
     path('department/', views.departmentView),
     path('employee/', views.employeeView),
     path('department/<int:pk>/', views.department_by_id),
     path('employee/<int:pk>/', views.employee_by_id),
+    path('department/add/', views.add_department),
+    path('employee/add/', views.add_employee),
 ]

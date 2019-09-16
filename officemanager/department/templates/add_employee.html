@@ -5,7 +5,7 @@
         <input form="save" class="btn btn-success" type="submit" value="Save" />
     </li>
     <li class="nav-item">
-        <a class=" btn btn-danger" href="/employee/">Cancel</a>
+        <a class="btn btn-danger" href="/employee/">Cancel</a>
     </li>
 {% endblock right-nav %}
 
@@ -15,7 +15,7 @@
 <form id="save" action="" method="POST">
     {% csrf_token %}
     <input type="hidden" name="method" value="put"> 
-    <table class="table inp">
+    <table class="table text-center inp">
         <tr>
             <td class="text-right">Department</td>
             <td class="text-left">
@@ -36,19 +36,19 @@
         </tr>
         <tr>
             <td class="text-right">First name</td>
-            <td class="text-left"><input type="text" name="first_name" value="{{info.first_name}}"></td>
+            <td class="text-left"><input type="text" name="first_name"></td>
         </tr>
         <tr>
-            <td class="text-right">Last name</td>
-            <td class="text-left"><input type="text" name="last_name" value="{{info.last_name}}"></td>
-        </tr>
+                <td class="text-right">Last name</td>
+                <td class="text-left"><input type="text" name="last_name"></td>
+            </tr>
         <tr>
             <td class="text-right">Date of birth</td>
-            <td class="text-left"><input name="date_of_birth" type="date" value="{{info.d_of_b}}"></td>
+            <td class="text-left"><input name="date_of_birth" type="date"></td>
         </tr>
         <tr>
             <td class="text-right">Salary</td>
-            <td class="text-left"><input type="text" name="salary" value="{{info.salary}}"></td>
+            <td class="text-left"><input type="text" name="salary"></td>
         </tr>
     </table>
 </form>
