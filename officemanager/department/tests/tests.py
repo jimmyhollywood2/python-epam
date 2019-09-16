@@ -1,6 +1,7 @@
 from django.test import TestCase
 from rest_framework.test import APITestCase
 from department.models import Department, Employee
+from department.service import service
 
 class StringReprTestCase(TestCase):
     
@@ -145,3 +146,10 @@ class RESTTestCase(APITestCase):
         self.client.delete('/api/employee/{}/'.format(added_id))
         resp = self.client.get('/api/employee/{}/'.format(added_id))
         self.assertEqual('Not found.', resp.json()['detail'])
+
+class ServiceTestCase(TestCase):
+    def test_get_department(self):
+        actual = [i['name'] for i in service.get_departments()]
+        asserted = [i.name for i in Department.objects.all()]
+        self.assertEqual(len(actual), len(asserted))
+        
