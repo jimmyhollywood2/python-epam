@@ -7,7 +7,6 @@ install:
   - pip install coveralls
 script:
   - pylint --load-plugins pylint_django officemanager/*/**.py
-  - python officemanager/manage.py runserver
   - coverage run --source=department officemanager/manage.py test department
 after_success:
   - coveralls

@@ -231,10 +231,3 @@ class DeleteEmployee(TestCase):
     def test_delete_invalid_url_employee(self):
         resp = self.client.delete(self.invalid_url)
         self.assertEqual(404, resp.status_code)
-
-class ServiceGetDepartments(TestCase):
-    def test_get(self):
-        resp = [i['name'] for i in service.get_departments()]
-        asserted = [i.name for i in Department.objects.all()]
-        self.assertEqual(sorted(resp), sorted(asserted))
-        
