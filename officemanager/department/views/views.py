@@ -1,38 +1,40 @@
 from django.shortcuts import render, redirect
-from rest_framework import viewsets
-from department.rest import rest
 from department.models.models import Department, Employee
 from department.service import service
+from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
+import requests
 
-#API
+class DepartmentListView(ListView):
 
-class EmployeeViewSet(viewsets.ModelViewSet):
-    """
-    ViewSet for view and edit Employee
-    """
-    queryset = Employee.objects.all()
-    serializer_class = rest.EmpoyeeSerializer
+    template_name = 'department.html'
+    context_object_name = 'dep_list'
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = 'Department list'
+        return context
+    
+    def get_queryset(self):
+        queryset = service.get_departments()
+        return queryset
+    
+class EmployeeListView(ListView):
 
-class DepartmentViewSet(viewsets.ModelViewSet):
-    """
-    ViewSet for view and edit Employee
-    """
-    queryset = Department.objects.all()
-    serializer_class = rest.DepartmentSerializer
+    template_name = "employee.html"
+    context_object_name = 'emp_list'
 
-#HTML
+    def get_context_data(self, **kwargs):
+        context = super(EmployeeListView, self).get_context_data(**kwargs)
+        context['title'] = 'Employee list'
+        return context
+    
+    def get_queryset(self):
+        queryset = service.get_employees()
+        return queryset
 
 def home(request):
     return render(request,'base.html')
-
-def departmentView(request):
-    dep_list = service.get_departments()
-    data = {
-        'title': 'Departments',
-        'dep_list': dep_list,
-        'add_url': '#',
-    }
-    return render(request, 'department.html', context=data)
 
 def department_by_id(request, pk):
     if request.method == 'GET':
@@ -41,7 +43,7 @@ def department_by_id(request, pk):
             'title': dep_info['name'],
             'info': dep_info,
         }
-        return render(request, 'department_info.html', context=data)
+        return render(request, 'department_detail.html', context=data)
     else:
         req_method = request.POST.get('method')
 
@@ -85,7 +87,7 @@ def employee_by_id(request, pk):
             'info': emp_info,
             'dep_list': Department.objects.all(),
         }
-        return render(request, 'employee_info.html', context=data)
+        return render(request, 'employee_detail.html', context=data)
     else:
         req_method = request.POST.get('method')
         if req_method == 'delete':

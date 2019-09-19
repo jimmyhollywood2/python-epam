@@ -15,20 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from rest_framework import routers
 from department.views import views
-
-#REST API urls
-ROUTER = routers.DefaultRouter()
-ROUTER.register('department', views.DepartmentViewSet)
-ROUTER.register('employee', views.EmployeeViewSet)
+from department.rest.urls import ROUTER
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home),
     path('api/', include(ROUTER.urls)),
-    path('department/', views.departmentView),
-    path('employee/', views.employeeView),
+    path('department/', views.DepartmentListView.as_view()),
+    path('employee/', views.EmployeeListView.as_view()),
     path('department/<int:pk>/', views.department_by_id),
     path('employee/<int:pk>/', views.employee_by_id),
     path('department/add/', views.add_department),

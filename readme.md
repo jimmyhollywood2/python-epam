@@ -7,3 +7,10 @@ Office Manager will provide the following functions:
 * displaying list of departments
 * displaying list of employees
 * adding/editing/deleting department/employee information
+
+Instalation:
+
+Requirements:
+1. Python 3.6
+2. MySQL
+3. 
