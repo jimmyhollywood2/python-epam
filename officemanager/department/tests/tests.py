@@ -282,7 +282,3 @@ class ViewTest(TestCase):
         resp = self.client.get('')
         self.assertEqual(resp.status_code, 200)
         self.assertTemplateUsed(resp, 'base.html')
-    
-    def test_departments(self):
-        resp = self.client.get('department/')
-        self.assertTemplateUsed(resp, 'department.html')
