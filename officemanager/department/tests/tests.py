@@ -290,8 +290,8 @@ class ViewTest(TestCase):
         self.assertEqual(resp.status_code, 200)
     
     @patch('department.service.service.get_departments')
-    def test_get_departments(self, patch_get_departments):
-        patch_get_departments.return_value = [
+    def test_get_departments(self, get_departments):
+        get_departments.return_value = [
             {"id":3,"name":"Administration","average_salary":11986.41},
             {"id":1,"name":"Business Intelligence","average_salary":11898.22},
             {"id":2,"name":"IT Management","average_salary":8598.29}
@@ -299,7 +299,7 @@ class ViewTest(TestCase):
         resp = self.client.get('/department/')
         self.assertTemplateUsed(resp, 'department.html')
         self.assertEqual(resp.status_code, 200)
-    
+
     @patch('department.service.service.get_employees')
     def test_get_employees(self, patch_get_employees):
         patch_get_employees.return_value = [
@@ -393,18 +393,3 @@ class TestClassBasedViews(TestCase):
         resp = view(request)
         self.assertEqual(resp.status_code, 200)
         self.assertEqual(resp.template_name[0], 'employee.html')
-    
-class ServiceTest(TestCase):
-    def test_get_department(self):
-        request = RequestFactory().get('/department/')
-        view = DepartmentListView.as_view()
-        resp = view(request)
-        service_res = service.get_departments()
-        self.assertEqual(service_res, resp.context_data['object_list'])
-
-    def test_get_employee(self):
-        request = RequestFactory().get('/employee/')
-        view = EmployeeListView.as_view()
-        resp = view(request)
-        service_res = service.get_employees()
-        self.assertEqual(service_res, resp.context_data['object_list'])
