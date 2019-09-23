@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 {% load staticfiles %}
 
 {% block right-nav %}
@@ -23,7 +23,6 @@
     <input type="image" src="{% static 'img/refresh.png' %}" alt="Submit Form" width="30" style="vertical-align: middle" onclick='filter()' onsubmit="return false"/>
 </div>
 
-<form id="save" action="" method="POST">
 <table id="table-employees" class="table table-striped" style="table-layout: fixed">
         <thead class="thead-dark">
             <tr>
@@ -44,9 +43,9 @@
                     <td>{{emp.last_name}}</td>
                     <td>{{emp.d_of_b}}</td>
                     <td>{{emp.salary}}</td>
-                    <td><a class="btn btn-dark" href="{{emp.id}}/">Edit</a></td>
+                    <td><a class="btn btn-dark" href='{{emp.id}}/'>Edit</a></td>
                     <td>
-                        <form action="{{emp.id}}/" method="POST" onsubmit="return confirm('Do you really want to delete this record?');">
+                        <form action='{{emp.id}}/' method="POST" onsubmit="return confirm('Do you really want to delete this record?');">
                             {% csrf_token %}
                             <input type="hidden" name="method" value="delete">
                             <input type="hidden" name="id" value="{{emp.id}}">
@@ -58,6 +57,5 @@
                 
         </tbody>
     </table>
-</form>
     
 {% endblock content %}

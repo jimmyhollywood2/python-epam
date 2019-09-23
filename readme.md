@@ -19,8 +19,9 @@
 ```python install officemanager/setup.py -q```
 4. Install and configure MySQL
 ```sudo apt-get install mysql```
-5. Create a new database and configure settings.py
+5. Create a new database
 ```CREATE DATABASE dbname;```
+6. Configure sttings.py
 ```python
 DATABASES = {
     'default': {
@@ -36,6 +37,6 @@ DATABASES = {
     },
 }
 ```
-6. Start gunicorn server
+7. Start gunicorn server
 ```cd officemanager```
 ```gunicorn officemanager.wsgi:application --bind 0.0.0.0:8000```

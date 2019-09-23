@@ -24,7 +24,7 @@
                 <tr>
                     <td>{{dep.name}}</td>
                     <td>{{dep.average_salary}}</td>
-                    <td><a class="btn btn-dark" href='{{dep.id}}/'>Edit</a></td>
+                    <td><a class="btn btn-dark" href="{{dep.id}}/">Edit</a></td>
                     <td>
                         <form action="{{dep.id}}/" method="POST" onsubmit="return confirm('Do you really want to delete this record?');">
                                 {% csrf_token %}
