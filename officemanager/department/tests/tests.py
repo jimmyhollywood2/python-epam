@@ -1,8 +1,9 @@
-from django.test import TestCase
+from django.test import TestCase, RequestFactory
 from unittest.mock import patch, Mock
 from rest_framework.test import APITestCase
 from department.models import Department, Employee
 from department.service import service
+from department.views.views import DepartmentListView,EmployeeListView
 import json
 
 class StringReprTestCase(TestCase):
@@ -258,27 +259,152 @@ class DeleteEmployee(TestCase):
         resp = self.client.delete(self.invalid_url)
         self.assertEqual(404, resp.status_code)
 
-class ServiceDepartments(TestCase):
-    @patch('department.service.service')
-    def test_get_departments(self, service):
-        return_from_mock = sorted([
-            'Business Intelligence',
-            'IT Management',
-            'Administration',
-            'IT Procurement',
-            'IT Security',
-            'Network Adminstration',
-            'Systems Analyst & Architecture',
-            'User Support & Services',
-        ])
-        service.get_departments.return_value = return_from_mock
-        asserted = sorted([i.name for i in Department.objects.all()])
-        resp = service.get_departments()
-        self.assertEqual(resp, asserted)
-        service.get_departments.assert_called()
-
 class ViewTest(TestCase):
     def test_home_page(self):
         resp = self.client.get('')
         self.assertEqual(resp.status_code, 200)
         self.assertTemplateUsed(resp, 'base.html')
+    
+    @patch('department.service.service.get_department_by_id')
+    def test_department_by_id(self, patch_get_department_by_id):
+        patch_get_department_by_id.return_value = {
+            'id': 99,
+            'name': 'Name 1',
+            'average_salary': 10000.00
+        }
+        resp = self.client.get('/department/99/')
+        self.assertTemplateUsed(resp, 'department_detail.html')
+        self.assertEqual(resp.status_code, 200)
+    
+    @patch('department.service.service.get_employee_by_id')
+    def test_employee_by_id(self, patch_get_employee_by_id):
+        patch_get_employee_by_id.return_value = {
+            'id': 1000,
+            'department': 'Department',
+            'first_name': 'Name 1',
+            'last_name': 'Last name',
+            'salary': 10000.00,            
+        }
+        resp = self.client.get('/employee/1000/')
+        self.assertTemplateUsed(resp, 'employee_detail.html')
+        self.assertEqual(resp.status_code, 200)
+    
+    @patch('department.service.service.get_departments')
+    def test_get_departments(self, patch_get_departments):
+        patch_get_departments.return_value = [
+            {"id":3,"name":"Administration","average_salary":11986.41},
+            {"id":1,"name":"Business Intelligence","average_salary":11898.22},
+            {"id":2,"name":"IT Management","average_salary":8598.29}
+        ]
+        resp = self.client.get('/department/')
+        self.assertTemplateUsed(resp, 'department.html')
+        self.assertEqual(resp.status_code, 200)
+    
+    @patch('department.service.service.get_employees')
+    def test_get_employees(self, patch_get_employees):
+        patch_get_employees.return_value = [
+            {"id":1,
+            "department":"User Support & Services",
+            "first_name":"Dmitri",
+            "last_name":"Hyneman",
+            "d_of_b":"1964-07-08",
+            "salary":"6486.77"
+            },
+            {"id":2,
+            "department":"IT Management",
+            "first_name":"Nina",
+            "last_name":"Stepaniuk",
+            "d_of_b":"1959-04-01",
+            "salary":"2359.33"
+            },
+            {"id":3,"department":"User Support & Services",
+            "first_name":"Krisitna",
+            "last_name":"McFly",
+            "d_of_b":"1981-02-28",
+            "salary":"17092.36"
+            },
+            {"id":4,
+            "department":"IT Management",
+            "first_name":"Alexandra",
+            "last_name":"Kluni",
+            "d_of_b":"1979-12-13",
+            "salary":"7934.22"
+            },
+            {"id":5,
+            "department":"IT Security",
+            "first_name":"Kirill",
+            "last_name":"Savage",
+            "d_of_b":"1954-05-17",
+            "salary":"2213.78"
+            }
+        ]
+        resp = self.client.get('/employee/')
+        self.assertTemplateUsed(resp, 'employee.html')
+        self.assertEqual(resp.status_code, 200)
+
+    @patch('department.service.service.add_department')
+    def test_add_dertment(self, patch_add_department):
+        patch_add_department.return_value = 204
+        resp = self.client.get('/department/add/')
+        self.assertTemplateUsed(resp, 'add_department.html')
+        self.assertEqual(resp.status_code, 200)
+
+    @patch('department.service.service.add_employee')
+    def test_add_employee(self, patch_add_employee):
+        patch_add_employee.return_value = 204
+        resp = self.client.get('/employee/add/')
+        self.assertTemplateUsed(resp, 'add_employee.html')
+        self.assertEqual(resp.status_code, 200)
+
+class TestClassBasedViews(TestCase):
+    @patch('department.views.views.DepartmentListView.get_queryset')
+    def test_department_list_view(self, get_queryset):
+        get_queryset.return_value = [
+            {'id':1,
+            'name':'name',
+            'average_salary':10000},
+            {'id':2,
+            'name':'name2',
+            'average_salary':10000},
+            {'id':3,
+            'name':'name3',
+            'average_salary':10000},
+        ]
+        request = RequestFactory().get('/department/')
+        view = DepartmentListView.as_view()
+        resp = view(request)
+        self.assertEqual(resp.status_code, 200)
+        self.assertEqual(resp.template_name[0], 'department.html')
+        self.assertEqual(resp.context_data['object_list'][0],{'id':1,'name':'name','average_salary':10000})
+
+    @patch('department.views.views.EmployeeListView.get_queryset')
+    def test_employee_list_view(self, get_queryset):
+        get_queryset.return_value = [
+            {"id":1,
+            "department":"User Support & Services",
+            "first_name":"Dmitri",
+            "last_name":"Hyneman",
+            "d_of_b":"1964-07-08",
+            "salary":"6486.77"
+            },
+        ]
+        request = RequestFactory().get('/employee/')
+        view = EmployeeListView.as_view()
+        resp = view(request)
+        self.assertEqual(resp.status_code, 200)
+        self.assertEqual(resp.template_name[0], 'employee.html')
+    
+class ServiceTest(TestCase):
+    def test_get_department(self):
+        request = RequestFactory().get('/department/')
+        view = DepartmentListView.as_view()
+        resp = view(request)
+        service_res = service.get_departments()
+        self.assertEqual(service_res, resp.context_data['object_list'])
+
+    def test_get_employee(self):
+        request = RequestFactory().get('/employee/')
+        view = EmployeeListView.as_view()
+        resp = view(request)
+        service_res = service.get_employees()
+        self.assertEqual(service_res, resp.context_data['object_list'])
