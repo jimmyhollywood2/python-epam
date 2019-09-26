@@ -1,1 +1,1 @@
-from department.models.models import Departments, Employees
+from department.models.models import Department, Employee

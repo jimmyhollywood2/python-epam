@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block right-nav %}
+    <li class="nav-item pr-1">        
+        <input form="save" class="btn btn-success" type="submit" value="Save" />
+    </li>
+    <li class="nav-item">
+        <a class=" btn btn-danger" href="/department/">Cancel</a>
+    </li>
+{% endblock right-nav %}
+    
+{% block content %}    
+    <hr>
+<h4 class="text-center">Edit department</h4>
+<form id="save" action="" method="POST">
+    {% csrf_token %}
+    <table class="table inp">
+        <tr>
+            <td class="text-right">Name:</td>
+            <td class="text-left">
+    <input type="hidden" name="method" value="put">
+    <input type="text" name="name" value="{{info.name}}">
+            </td>
+        </tr>
+    </table>
+</form>
+
+{% endblock content %}

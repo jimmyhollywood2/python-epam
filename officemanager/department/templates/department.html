@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block right-nav %}
+
+<li class="nav-item">
+    <a class="nav-link btn btn-dark" href="add/">add</a>
+</li>
+    
+{% endblock right-nav %}
+    
+{% block content %}
+
+<table class="table table-striped" style="table-layout: fixed">
+        <thead class="thead-dark">
+            <tr>
+                <th>Department name</th>
+                <th>Average salary</th>
+                <th colspan="2" style="width: 200px;"></th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            {% for dep in dep_list %}
+                <tr>
+                    <td>{{dep.name}}</td>
+                    <td>{{dep.average_salary}}</td>
+                    <td><a class="btn btn-dark" href="{{dep.id}}/">Edit</a></td>
+                    <td>
+                        <form action="{{dep.id}}/" method="POST" onsubmit="return confirm('Do you really want to delete this record?');">
+                                {% csrf_token %}
+                                <input type="hidden" name="method" value="delete">
+                                <input type="hidden" name="id" value="{{dep.id}}">
+                                <input class="btn btn-dark" type="submit" value="Delete" />
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+                
+        </tbody>
+    </table>
+    
+{% endblock content %}

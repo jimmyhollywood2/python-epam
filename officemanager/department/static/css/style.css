@@ -1,0 +1,6 @@
+.inp td input[type=text], select{
+    width:300px;
+}
+.inp td input[type=date]{
+    width:300px;
+}

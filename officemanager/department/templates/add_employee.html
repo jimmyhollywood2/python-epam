@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block right-nav %}
+    <li class="nav-item pr-1">        
+        <input form="save" class="btn btn-success" type="submit" value="Save" />
+    </li>
+    <li class="nav-item">
+        <a class="btn btn-danger" href="/employee/">Cancel</a>
+    </li>
+{% endblock right-nav %}
+
+{% block content %}
+<hr>
+<h4 class="text-center">Add employee</h4>
+<form id="save" action="" method="POST">
+    {% csrf_token %}
+    <input type="hidden" name="method" value="put"> 
+    <table class="table text-center inp">
+        <tr>
+            <td class="text-right">Department</td>
+            <td class="text-left">
+                <select id="department" name="department">
+                    
+                    {% for dep in dep_list %}
+                    
+                    {% if info.department == dep.name %}
+                    <option value="{{dep.id}}" selected>{{dep.name}}</option>
+                    {% else %}
+                    <option value="{{dep.id}}">{{dep.name}}</option>
+                    {% endif %}
+                        
+                    {% endfor %}
+                        
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td class="text-right">First name</td>
+            <td class="text-left"><input type="text" name="first_name"></td>
+        </tr>
+        <tr>
+                <td class="text-right">Last name</td>
+                <td class="text-left"><input type="text" name="last_name"></td>
+            </tr>
+        <tr>
+            <td class="text-right">Date of birth</td>
+            <td class="text-left"><input name="date_of_birth" type="date"></td>
+        </tr>
+        <tr>
+            <td class="text-right">Salary</td>
+            <td class="text-left"><input type="text" name="salary"></td>
+        </tr>
+    </table>
+</form>
+{% endblock content %}
