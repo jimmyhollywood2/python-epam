@@ -12,7 +12,7 @@ setup(
     description='A simple Django app to manage departments and employees.',
     #coveralls or python-coveralls?
     install_requires=[
-        'django==2.2.4',
+        'django==3.2.24',
         'django-mysql>=3.2',
         'djangorestframework>=3.10.2',
         'mysqlclient>=1.4.4',
